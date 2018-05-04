@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit
 	public identity;
 
 	constructor(
+		private _route: ActivatedRoute,
+		private _router: Router,
 		private _userService: UserService
 	){
 		this.title = 'Iniciar sesión';
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit
 	ngOnInit()
 	{
 		console.log('login.component cargado correctamente');
+		this.logout();
 	}
 
 	onSubmit(form)
@@ -57,5 +60,23 @@ export class LoginComponent implements OnInit
 				console.log(<any>error);
 			}
 		);
+	}
+
+	logout()
+	{
+		this._route.params.subscribe(params => {
+			let logout = +params['sure'];
+			if(logout == 1)
+			{
+				localStorage.removeItem('identity');
+				localStorage.removeItem('token');
+
+				this.identity = null;
+				this.token = null;
+
+				//redirigir a otro componente
+				this._router.navigate(['inicio'])
+			}
+		});
 	}
 }
