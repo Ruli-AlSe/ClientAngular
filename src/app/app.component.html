@@ -14,12 +14,12 @@
         <a href="">Inicio</a>
       </li>
       <li>
-        <a href="">Crear coche</a>
+        <a href="" *ngIf="identity">Crear coche</a>
       </li>
     </ul>
 
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
       <li>
         <a [routerLink]="['login']" >Inciar sesión</a>
       </li>
@@ -27,6 +27,18 @@
         <a [routerLink]="['registro']" >Registrarse</a>
       </li>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+      <li>
+        <a href="#">{{identity.name + ' ' + identity.surname}}</a>
+      </li>
+      <li>
+        <a [routerLink]="['registro']">
+          <span class="glyphicon glyphicon-log-out"></span>
+        Cerrar Sesión</a>
+      </li>
+    </ul>
+
   </div>
 </div>
 </header>

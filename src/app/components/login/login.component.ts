@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit
 {
 	public title: string;
 	public user: User;
+	public token;
+	public identity;
 
 	constructor(
 		private _userService: UserService
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit
 	{
 		console.log('login.component cargado correctamente');
 	}
+
 	onSubmit(form)
 	{
 		console.log(this.user);
@@ -32,17 +35,23 @@ export class LoginComponent implements OnInit
 		this._userService.signup(this.user).subscribe(
 			response => {
 				//se obtiene el token
-				console.log(response);
+				//console.log(response);
+
+				this.token = response;
+				localStorage.setItem('token', this.token);
 
 				//objeto usuario identificado
 				this._userService.signup(this.user, true).subscribe(
 					response => {
 						//se obtiene el token
-						console.log(response);
+						//console.log(response);
+						this.identity = response;
+						localStorage.setItem('identity', JSON.stringify(this.identity));
 					},
 					error => {
 						console.log(<any>error);
 					}
+				);
 			},
 			error => {
 				console.log(<any>error);
