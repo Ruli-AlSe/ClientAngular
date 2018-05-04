@@ -35,6 +35,14 @@ export class LoginComponent implements OnInit
 				console.log(response);
 
 				//objeto usuario identificado
+				this._userService.signup(this.user, true).subscribe(
+					response => {
+						//se obtiene el token
+						console.log(response);
+					},
+					error => {
+						console.log(<any>error);
+					}
 			},
 			error => {
 				console.log(<any>error);
