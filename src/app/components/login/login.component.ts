@@ -5,7 +5,7 @@ import { UserService } from '../../services/user.service';
 
 @Component({
 	selector: 'login',
-	templateUrl: './login.component.html'
+	templateUrl: './login.component.html',
 	providers: [UserService]
 })
 
@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit
 
 		this._userService.signup(this.user).subscribe(
 			response => {
-
+				console.log(response);
 			},
 			error => {
-				console.log(error<any>);
+				console.log(<any>error);
 			}
 		);
 	}

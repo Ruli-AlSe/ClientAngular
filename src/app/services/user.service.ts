@@ -31,7 +31,7 @@ export class UserService
 		return this._http.post(this.url+'register', params, {headers: headers});
 	}
 
-	signUp(user): Observable<any>
+	signup(user): Observable<any>
 	{
 		let json = JSON.stringify(user);
 		let params = 'json='+json;
