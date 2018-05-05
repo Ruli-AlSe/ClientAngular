@@ -1,0 +1,37 @@
+<div class="col-md-12">
+	<h2>{{ page_title }}</h2>
+
+
+	<form #carNew="ngForm" (ngSubmit)="onSubmit(carNew)" class="col-md-5">
+		<p>
+			<label for="title">Titulo</label>
+			<input type="text" name="title" class="form-control" #title="ngModel" [(ngModel)]="car.title" required />
+			<span *ngIf="!title.valid && title.touched ">
+				El titulo del coche no es valido.
+			</span>
+		</p>
+		<p>
+			<label for="description">Descripción del coche</label>
+			<textarea name="description" class="form-control" #description="ngModel" [(ngModel)]="car.description" required ></textarea>
+			<span *ngIf="!description.valid && description.touched ">
+				La descripción del coche no es valida.
+			</span>
+		</p>
+		<p>
+			<label for="price">Precio</label>
+			<input type="number" name="price" class="form-control" #price="ngModel" [(ngModel)]="car.price" required />
+			<span *ngIf="!price.valid && price.touched ">
+				El precio del coche no es valido.
+			</span>
+		</p>
+		<p>
+			<label for="status">¿A la venta?</label>
+			<select class="form-control" name="status" #status="ngModel" [(ngModel)]="car.status">
+				<option value="true">Si</option>
+				<option value="false">No</option>
+			</select>
+		</p>
+
+		<input type="submit" value="Guardar" class="btn btn-success" />
+	</form>
+</div>
