@@ -10,7 +10,7 @@ const appRoutes: Routes = [
 	{path:'', component: DefaultComponent},
 	{path:'inicio', component: DefaultComponent},
 	{path:'login', component: LoginComponent},
-	{path:'logout/:sure' component: LoginComponent},
+	{path:'logout/:sure', component: LoginComponent},
 	{path:'registro', component: RegisterComponent},
 	{path:'**', component: DefaultComponent}
 ];
