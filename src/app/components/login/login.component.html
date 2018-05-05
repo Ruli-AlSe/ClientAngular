@@ -1,5 +1,12 @@
 <div class="col-md-12">
 	<h2>{{ title }}</h2>
+	<div class="alert alert-success" *ngIf="status == 'success'" >
+		¡Iniciaste sesión correctamente!
+	</div>
+
+	<div class="alert alert-danger" *ngIf="status == 'error'" >
+		El usuario o la contraseña son incorrectos, verificalos.
+	</div>
 
 	<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
 		<p>

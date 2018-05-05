@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit
 	public user: User;
 	public token;
 	public identity;
+	public status: string;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -33,28 +34,40 @@ export class LoginComponent implements OnInit
 
 	onSubmit(form)
 	{
-		console.log(this.user);
+		//console.log(this.user);
 
 		this._userService.signup(this.user).subscribe(
 			response => {
 				//se obtiene el token
 				//console.log(response);
 
-				this.token = response;
-				localStorage.setItem('token', this.token);
+				//console.log(response);
+				if (response.status != 'error') 
+				{
+					this.status = 'success';
+					this.token = response;
+					localStorage.setItem('token', this.token);
 
-				//objeto usuario identificado
-				this._userService.signup(this.user, true).subscribe(
-					response => {
-						//se obtiene el token
-						//console.log(response);
-						this.identity = response;
-						localStorage.setItem('identity', JSON.stringify(this.identity));
-					},
-					error => {
-						console.log(<any>error);
-					}
-				);
+					//objeto usuario identificado
+					this._userService.signup(this.user, true).subscribe(
+						response => {
+							//se obtiene la identidad del usuario
+							//console.log(response);
+							this.identity = response;
+							localStorage.setItem('identity', JSON.stringify(this.identity));
+
+							//redirecciona a home
+							this._router.navigate(['inicio']);
+						},
+						error => {
+							console.log(<any>error);
+						}
+					);
+				}
+				else
+				{
+					this.status = 'error';
+				}
 			},
 			error => {
 				console.log(<any>error);
