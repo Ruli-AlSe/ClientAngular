@@ -1,5 +1,14 @@
 <div class="col-md-12">
 	<h2>{{ page_title }}</h2>
+	<div class="alert alert-success" *ngIf="statusCar == 'success'">
+		El coche se ha guardado correctamente.
+	</div>
+	<div class="alert alert-danger" *ngIf="statusCar == 'error'">
+		El coche no se ha guardado correctamente, intentalo de nuevo.<br/>
+		<ul>
+			<li>{{sta.error.title}}</li>
+		</ul>
+	</div>
 
 
 	<form #carNew="ngForm" (ngSubmit)="onSubmit(carNew)" class="col-md-5">
@@ -26,12 +35,12 @@
 		</p>
 		<p>
 			<label for="status">¿A la venta?</label>
-			<select class="form-control" name="status" #status="ngModel" [(ngModel)]="car.status">
-				<option value="true">Si</option>
+			<select class="form-control" name="status" #status="ngModel" [(ngModel)]="car.status" required>
+				<option value="true" selected="selected">Si</option>
 				<option value="false">No</option>
 			</select>
 		</p>
 
-		<input type="submit" value="Guardar" class="btn btn-success" />
+		<input type="submit" value="Guardar" class="btn btn-success" [disabled]="!carNew.form.valid"/>
 	</form>
 </div>

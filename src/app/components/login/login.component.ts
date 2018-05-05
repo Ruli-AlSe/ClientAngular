@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit
 							localStorage.setItem('identity', JSON.stringify(this.identity));
 
 							//redirecciona a home
-							this._router.navigate(['inicio']);
+							this._router.navigate(['']);
 						},
 						error => {
 							console.log(<any>error);
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit
 				this.token = null;
 
 				//redirigir a otro componente
-				this._router.navigate(['inicio'])
+				this._router.navigate([''])
 			}
 		});
 	}
